@@ -34,7 +34,9 @@ public class Comment {
     private int insertedById; // SpringSecurity добавить
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY
+            // , cascade = CascadeType.ALL
+    )
     @JoinColumn(name = "id_news")
     private News news;
 

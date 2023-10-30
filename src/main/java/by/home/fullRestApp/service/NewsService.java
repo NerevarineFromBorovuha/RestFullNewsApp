@@ -1,17 +1,19 @@
 package by.home.fullRestApp.service;
 
 import by.home.fullRestApp.model.News;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface NewsService {
 
     Optional<News> findNewsById(Long id);
 
-    List<News> getListNews();
+    Page<News> getListNews(Pageable pageable);
 
-    void saveNews(News theNews);
+    News saveNews(News theNews);
 
     void updateNews(News theNews, Long id);
 
