@@ -3,9 +3,8 @@ package by.home.fullRestApp.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 
 import java.time.LocalDateTime;
@@ -13,9 +12,10 @@ import java.util.List;
 
 
 @Entity
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "news")
 public class News {
 
@@ -24,9 +24,11 @@ public class News {
     @Column(name = "id")
     private int id;
 
+    @Size(min = 3, max = 150)
     @Column(name = "title")
     private String title;
 
+    @Size(min = 3, max = 2000)
     @Column(name = "text")
     private String text;
 
@@ -36,11 +38,14 @@ public class News {
     @Column(name = "last_edit_date")
     private LocalDateTime lastEditDate;
 
+
     @Column(name = "inserted_by_id")
-    private int insertedById; // SpringSecurity добавить
+    // SpringSecurity добавить
+    private int insertedById;
 
     @Column(name = "updated_by_id")
-    private int updatedById; // SpringSecurity добавить
+    // SpringSecurity добавить
+    private int updatedById;
 
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "news")

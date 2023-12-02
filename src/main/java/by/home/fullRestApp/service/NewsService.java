@@ -2,22 +2,24 @@ package by.home.fullRestApp.service;
 
 import by.home.fullRestApp.model.News;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Map;
 
 public interface NewsService {
 
-    Optional<News> findNewsById(Long id);
+    News findNewsById(Long id);
 
-    Page<News> getListNews(Pageable pageable);
+    Page<News> getListNews(int offset, int limit);
 
-    News saveNews(News theNews);
+    News createNews(News theNews);
 
-    void updateNews(News theNews, Long id);
+    News updateNews(News theNews, Long id);
 
     void deleteNews(Long theId);
+
+    List<News> findNewsByCriteria(Map<String, String> searchParams);
 
 
 }
